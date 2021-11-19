@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=860"/>
+    <title>Glock Info</title>
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+    <style>
+        body {
+            font-size: 75%;
+            margin: 0px;
+            background-color: rgb(145 118 97);
+
+        }
+
+        #wrapper{ /* Оболочка страницы сайта */
+            width: 900px; /* Меняется ширина страницы */
+            margin: 0 auto;
+            background:rgb(190 174 159); /* Меняется задний фон страницы */
+        }
+
+        /* Шапка сайта */
+
+        #header{
+            position:relative; /* Задаём блоку относительное позиционирование для того, чтобы затем размещать, в нём другие элементы и позиционировать относительно его границ поверх фоновой картинки и заголовка */
+            height: 150px; /* Высота шапки */
+            background: url(/assets/images/fon.png); /* Фон шапки */
+            margin-bottom: 5px; /* Нижний отступ шапки от остального контента */
+            border-radius: 5px; /* Закругляются углы блока */
+            box-shadow: rgba(0,0,0,0.5) 0px 1px 3px; /* Тень. Визуально приподнимает блок над оболочкой */
+        }
+        img{ /* Фоновая картинка в шапке */
+
+            margin: -40px 0 0 0;} /* Размещаем картинку в блоке header. 1-я и 3-я цифры - двигаем вверх-вниз, 2-я и 4-я цифры - двигаем вправо-влево */
+
+
+        h1{ /* Заголовок сайта */
+            margin:0 0 10px 40px; /* Заголовок двигается верх-вправо-вниз-влево. */
+            color:rgb(235 230 210); /* Цвет заголовка */
+        }
+        .nomer{ /*Подзаголовок (номер телефона)*/
+            position:absolute; /* Позиционируем абсолютно подзаголовок, относительно границ блока header. Также можно разместить в шапке сайта ещё другие картинки и абзацы поверх фоновой картинки и заголовка */
+            top:5px; /* Двигается вверх-вниз */
+            left:680px; /* Двигается вправо-влево */
+            font-size: 20px; /* Размер букв подзаголовка */
+            font-style:italic; /* Курсив */
+            font-weight:bold; /* Жирный */
+            color:#ede0cf; /* Цвет букв подзаголовка */
+            font-family: Cute Notes, cursive;
+        }
+        .fig {
+            text-align: center; /* Выравнивание по центру */
+        }
+        .rightpic {
+            float: right; /* Выравнивание по правому краю */
+            margin: 0 0 5px 5px; /* Отступы вокруг фотографии */
+        }
+
+        /* Сайдбар (колонка справа) */
+
+        #sidebar{ /* Блок сайдбара */
+            background-color: rgb(220 215 193); /* Фон блока */
+            width: 180px; /* Ширина блока */
+            padding: 10px; /* Отступ текста от краёв */
+            float: right; /* Размещаем блок справа от других элементов, наплывание или обтекание справа). Если делать сайдбар слева, то значение right меняем на left */
+            border-radius: 5px; /* Закругляем углы блока */
+            box-shadow: rgba(0,0,0,0.5) 0px 1px 3px; /* Задаём блоку тень */
+        }
+        .marcer{ /* Галочки маркеры меню */
+            float: left; /* Размещаем слева от текста */
+            margin: 5px 5px 0 0; /* Двигаются вверх-вправо-вниз-влево */
+        }
+        /* Контент (статья) */
+
+        #content{ /* Блок контента */
+            margin-bottom: 5px; /* Отступ блока статьи от блока подвала */
+            width: 676px; /* Ширина статьи */
+            padding: 10px; /* Отступ текста от краёв блока */
+            background: #ffffff; /* Фон статьи */
+            border-radius: 5px;
+            box-shadow: rgba(0,0,0,0.5) 0px 1px 3px;
+        }
+
+        /* Подвал */
+
+        #footer{ /* Блок подвала */
+            height:80px; /* Высота блока подвала */
+            background-color: #ffffff; /* Фон блока подвала */
+            margin-bottom: 10px; /* Отступ снизу */
+            border-radius: 5px; /* Закруглённые углы */
+            box-shadow: rgba(0,0,0,0.5) 0px 1px 3px; /* Тень блока */
+        }
+        .clear{ /* Запрет наплывания. Устанавливается для того, чтобы блок контента, при заполнении текстом и изображениями не наплывал на подвал */
+            clear: both;
+        }
+        .fon{ /* Номер телефона */
+            float:left; /* Разрешаем другим элементам обтекать абзац справа */
+            margin:20px 0 0 20px;
+        }
+        .fax{ /* Номер факса */
+            float:left;
+            margin:20px 0 0 60px;
+        }
+        .mail{ /* Адрес E-mail */
+            float:left;
+            margin:20px 0 0 60px;
+        }
+        .red {
+            color: red;
+        }
+        @font-face {
+            font-family: AmericanStencil; /* Гарнитура шрифта */
+            src: url(/assets/fonts/AmericanStencil.otf); /* Путь к файлу со шрифтом */
+        }
+        h1, h2, h3 {
+            font-family: AmericanStencil, cursive;
+            font-size: 130%;
+        }
+        @font-face {
+            font-family: Cute Notes; /* Гарнитура шрифта */
+            src: url(/assets/fonts/20780.ttf); /* Путь к файлу со шрифтом */
+        }
+        @font-face {
+            font-family: Danger; /* Гарнитура шрифта */
+            src: url(/assets/fonts/Danger.ttf); /* Путь к файлу со шрифтом */
+        }
+
+        ul {
+            font-family: Danger, cursive;
+            font-size: 150%;
+            color: rgb(57 40 20);
+        }
+        .namee {
+            font-size: 200%;
+        }
+        .namee img{
+            margin-top: 5%;
+        }
+
+        a {
+            text-decoration: none;
+            color: rgb(57 40 20);
+        }
+
+        .langcolor {
+            color: teal;
+        }
+
+        .langcolors {
+            color: steelblue;
+        }
+
+    </style>
+</head>
+<body>
+<div id="wrapper"> <!--Оболочка страницы-->
+    <!--Шапка сайта-->
+    <div id="header">
+
+        <!--Заголовок сайта-->
+
+       <h1 class="namee">Glock Info</h1>
+        <p class="nomer" tel="tel:666"> <br> Оружейный ресурс</p>
+
+
+
+
+
+    </div>
+    <!--Сайдбар-->
+    <div id="sidebar">
+
+        <div>
+            <img class="marcer" src="/assets/images/rawka1.png" width="15" height="10">    <p class="langcolors">Русский</p>
+            <img class="marcer" src="/assets/images/ua.png" width="15" height="10">        <p class="langcolor"> <a href="indexua.html">Український</a></p>
+            <img class="marcer" src="/assets/images/usa.png" width="15" height="10">       <p class="langcolor"><a href="indexen.html">English</p>
+            <img class="marcer" src="/assets/images/de.png" width="15" height="10">        <p class="langcolor"><a href="indexde.html">Deutsche</p>
+        </div>
+
+
+        <!--меню-->
+        <h3>Больше информации:</h3>
+        <!--Картинки маркеров меню (галочки)-->
+        <p><img class="marcer" src="/assets/images/pulya.png" width="10" height="10"><a href="#pistol"> Пистолеты </a></p>
+        <p><img class="marcer" src="/assets/images/pulya.png" width="10" height="10"><a href="#rev"> Револьверы</a></p>
+        <p><img class="marcer" src="/assets/images/pulya.png" width="10" height="10"><a href="#ppistol"> Пистолеты-Пулеметы</a></p>
+        <p><img class="marcer" src="/assets/images/pulya.png" width="10" height="10"><a href="#shootvint"> Штурмовые винтовки</a></p>
+        <p><img class="marcer" src="/assets/images/pulya.png" width="10" height="10"><a href="#snipevin"> Снайперские винтовки</a></p>
+        <!--Прямая синяя линия-->
+        <hr width="150" color="#654722" size="5">
+        <!--Страны-->
+        <p> <img class="marcer" src="/assets/images/israel.png" width="25" height="15"><a class="red" href="#israel"> Израиль </a></p>
+        <p> <img class="marcer" src="/assets/images/spain.png" width="25" height="15"><a class="red" href="#spain"> Испания </a></p>
+        <p> <img class="marcer" src="/assets/images/mex.png" width="25" height="15"><a class="red" href="#mex">  Мексика </a></p>
+        <p> <img class="marcer" src="/assets/images/korea.png" width="25" height="15"><a class="red" href="#korea"> Южная Корея </a></p>
+        <p> <img class="marcer" src="/assets/images/slovakia.png" width="25" height="15"><a class="red" href="#slovakia"> Словакия </a></p>
+        <p> <img class="marcer" src="/assets/images/uar.png" width="25" height="15"><a class="red" href="#uar"> ЮАР </a></p>
+        <p> <img class="marcer" src="/assets/images/4ernogoryy.png" width="25" height="15"><a class="red" href="#4ernogoryy"> Черногория </a></p>
+        <p><img class="marcer" src="/assets/images/xorvaty.png" width="25" height="15"> <a class="red" href="#xorvaty"> Хорватия </a></p>
+        <p> <img class="marcer" src="/assets/images/japan.png" width="25" height="15"><a class="red" href="#japan"> Япония </a></p>
+        <p> <img class="marcer" src="/assets/images/norveg.png" width="25" height="15"><a class="red" href="#norveg"> Норвегия </a></p>
+        <p> <img class="marcer" src="/assets/images/ua.png" width="25" height="15"><a class="red" href="#ua"> Украина </a></p>
+        <p> <img class="marcer" src="/assets/images/vietnam.png" width="25" height="15"><a class="red" href="#"vietnam> Вьетнам </a></p>
+        <p><img class="marcer" src="/assets/images/usa.png" width="25" height="15"> <a class="red" href="#usa"> США </a></p>
+        <p><img class="marcer" src="/assets/images/uk.png" width="25" height="15"> <a class="red" href="#uk"> Великобритания </a></p>
+        <p><img class="marcer" src="/assets/images/fin.png" width="25" height="15"> <a class="red" href="#fin"> Финляндия </a></p>
+        <p><img class="marcer" src="/assets/images/veng.png" width="25" height="15"> <a class="red" href="#veng"> Венгрия </a></p>
+        <p> <img class="marcer" src="/assets/images/de.png" width="25" height="15"><a class="red" href="#de"> Германия </a></p>
+        <p><img class="marcer" src="/assets/images/serb.png" width="25" height="15"> <a class="red" href="#serb"> Сербия </a></p>
+        <p><img class="marcer" src="/assets/images/schwts.png" width="25" height="15"> <a class="red" href="#schwts"> Швейцария </a></p>
+        <p><img class="marcer" src="/assets/images/polska.png" width="25" height="15"> <a class="red" href="#polska"> Польша </a></p>
+        <p> <img class="marcer" src="/assets/images/french.png" width="25" height="15"><a class="red" href="#french"> Франция </a></p>
+        <p> <img class="marcer" src="/assets/images/belg.png" width="25" height="15"><a class="red" href="#belg"> Бельгия </a></p>
+        <p> <img class="marcer" src="/assets/images/italy.png" width="25" height="15"><a class="red" href="#italy"> Италия </a></p>
+        <p> <img class="marcer" src="/assets/images/avstr.png" width="25" height="15"><a class="red" href="#avstr"> Австрия </a></p>
+        <p> <img class="marcer" src="/assets/images/rawka1.png" width="25" height="15"><a class="red" href="#rawka1"> Россия </a></p>
+        <p><img class="marcer" src="/assets/images/brazil.png" width="25" height="15"> <a class="red" href="#brazil">Бразилия </a></p>
+        <p> <img class="marcer" src="/assets/images/turka.png" width="25" height="15"><a class="red" href="#turka"> Турция </a></p>
+        <p> <img class="marcer" src="/assets/images/argent.png" width="25" height="15"><a class="red" href="#argent"> Аргентина</a></p>
+        <p> <img class="marcer" src="/assets/images/canada.png" width="25" height="15"><a class="red" href="#canada"> Канада </a></p>
+        <p> <img class="marcer" src="/assets/images/oae.png" width="25" height="15"><a class="red" href="#oae"> ОАЭ </a></p>
+        <p> <img class="marcer" src="/assets/images/iordan.png" width="25" height="15"><a class="red" href="#iordan"> Иордания </a></p>
+        <p> <img class="marcer" src="/assets/images/khp.jpg" width="25" height="15"><a class="red" href="#khp"> КНР </a></p>
+        <p> <img class="marcer" src="/assets/images/bolga.png" width="25" height="15"><a class="red" href="#bolga"> Болгария </a></p>
+        <p><img class="marcer" src="/assets/images/slovenia.png" width="25" height="15"> <a class="red" href="#slovenia"> Словения </a></p>
+        <p><img class="marcer" src="/assets/images/cezka.png" width="25" height="15"> <a class="red" href="#cezka"> Чехия </a></p>
+
+    </div>
+
+    <!--Основной контент (статья)-->
+    <div id="content">
+
+
+        <!--Заголовок статьи-->
+        <h2><img class="marcer" src="/assets/images/pulya.png" width="25" height="25"> Оружейный ресурс Glock Info</h2>
+        <hr width="600" color="#654722" size="5">
+        <!--Текст статьи-->
+        <p>   Сайт «Glock Info» содержит материалы по стрелковому оружию, его истории, конструкции, отличительным особенностям и техническим характеристикам, боеприпасам и аспектам практического применения, а так же огнестрельному оружию ограниченного поражения. Материалы по многим образцам дополнены личными впечатлениями владельцев различных моделей оружия и полезными сведениями для работающих с оружием, либо владеющих им в целях самообороны и занятий спортом. На сайте представлены обзоры новинок международного рынка стрелкового оружия и боеприпасов, имеются полезные ссылки на ресурсы профильной тематики.</p>
+        <hr width="600" color="#654722" size="5">
+
+
+
+    </div>
+    <div id="content">
+        <!--Заголовок статьи-->
+         <h2 class="fig" id="pistol"> Пистолеты </h2>
+
+        <!--Текст статьи-->
+        <hr width="600" color="#7d5f3b" size="5">
+        <img class="marcer" src="/assets/images/avstr.png" id="avstr" width="25" height="15">  <h3> Glock 17 </h3> <img class="rightpic" src="/assets/images/1glock17.jpg" width="150" height="100">
+        <ul>
+            <li> Калибр, мм — 9×19 Parabellum. </li>
+            <li> Длина, мм — 186. </li>
+            <li> Длина ствола, мм — 114. </li>
+            <li> Высота, мм — 138. </li>
+            <li> Нарезы — правосторонние, гексагональный, шаг 250 мм </li>
+            <li> Вес (без магазина), кг — 0,625. </li>
+            <li> Вес (снаряженный), кг — 0,905. </li>
+            <li> Магазин, патронов — 17, (опционально на 19 или 33) </li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+        <img class="marcer" src="/assets/images/italy.png" id="italy" width="25" height="15"> <h3> Beretta 92 </h3> <img class="rightpic" src="/assets/images/Beretta 92.png" width="150" height="100">
+        <ul>
+            <li> Калибр — 9 мм </li>
+            <li> Общая длина — 217 мм </li>
+            <li>  Длина ствола — 125 мм </li>
+            <li>Вес — 980 грамм  </li>
+            <li> Емкость магазина — 15 патронов </li>
+            <li> Эффективная дальность — 25 метров </li>
+        </ul>
+         <hr width="600" color="#7d5f3b" size="5">
+        <img class="marcer" src="/assets/images/usa.png" id="usa" width="25" height="15">  <h3> Colt M1911 </h3> <img class="rightpic" src="/assets/images/ColtM1911.png" width="150" height="100">
+        <ul>
+            <li> Калибр: .45 ACP. </li>
+            <li> Длина оружия: 219 мм  </li>
+            <li> Длина ствола: 127 мм</li>
+            <li> Высота оружия: 140 мм </li>
+            <li> Ширина оружия: 30 мм </li>
+            <li> Масса без патронов: 1106 г </li>
+            <li> Емкость магазина: 7 патронов</li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+        <img class="marcer" src="/assets/images/de.png" id="de" width="25" height="15"> <h3> Heckler & Koch USP. </h3> <img class="rightpic" src="/assets/images/HecklerKochUSP.png" width="150" height="100">
+        <ul>
+            <li> Калибр: 9mm Parabellum / .357 SIG / .40 S&W / .45 ACP.</li>
+            <li> Длина оружия: 194 / 194 / 200 мм </li>
+            <li>Длина ствола: 108 / 108 / 112 мм </li>
+            <li> Высота оружия: 136 / 136 / 141 мм </li>
+            <li> Ширина оружия: 38 / 38 / 38 мм </li>
+            <li> Масса без патронов: 770 / 830 / 890 г </li>
+            <li> Емкость магазина: 15 / 13 / 13 / 12 патронов</li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+        <img class="marcer" src="/assets/images/cezka.png" id="cezka" width="25" height="15">  <h3> CZ-85 </h3> <img class="rightpic" src="/assets/images/CZ-85.png" width="150" height="100">
+        <ul>
+            <li> Калибр: 9mm Parabellum / .40 S&W.</li>
+            <li> Длина оружия: 206 мм </li>
+            <li> Длина ствола: 120 мм</li>
+            <li> Высота оружия: 138 мм </li>
+            <li> Ширина оружия: 38 мм </li>
+            <li> Масса без патронов: 1000 г. </li>
+            <li> Емкость магазина: 16 / 10 патронов</li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+        <img class="marcer" src="/assets/images/rawka1.png" id="rawka1" width="25" height="15">   <h3> TT </h3> <img class="rightpic" src="/assets/images/TT.png" width="150" height="100">
+        <ul>
+            <li>Масса - 854 г (без патронов), 940 г (снаряженный). </li>
+            <li> Длина - 195 мм, длина ствола - 116 мм. </li>
+            <li>Высота - 120 мм. </li>
+            <li> Ширина - 28 мм. </li>
+            <li> Калибр - 7,62 мм. </li>
+            <li>Патрон - 7,62 х 25 мм ТТ.  </li>
+            <li> Начальная скорость пули - 420 м/c.</li>
+            <li>Прицельная дальность - 50 м.  </li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+        <img class="marcer" src="/assets/images/belg.png" id="belg" width="25" height="15">   <h3> FN Five-seveN</h3> <img class="rightpic" src="/assets/images/FIVE.png" width="150" height="100">
+        <ul>
+            <li>Калибр: 5,7×28 FN. </li>
+            <li> Длина оружия: 208 мм </li>
+            <li>Длина ствола: 123 мм </li>
+            <li>  Высота оружия: 144 мм</li>
+            <li> Ширина оружия: 31 мм </li>
+            <li> Масса без патронов: 590 г </li>
+            <li> Емкость магазина: 20 патронов</li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+        <img class="marcer" src="/assets/images/de.png" id="de" width="25" height="15">    <h3> Walther PP. </h3> <img class="rightpic" src="/assets/images/walther.png" width="150" height="100">
+        <ul>
+            <li> Калибр: .22LR / 6,35mm Browning / 7,65mm Browning / 9mm Short.</li>
+            <li> Длина оружия: 170 мм </li>
+            <li>Длина ствола: 98 мм </li>
+            <li> Высота оружия: 109 мм </li>
+            <li> Ширина оружия: 25 мм </li>
+            <li> Масса без патронов: 710 г </li>
+            <li>Емкость магазина: 10 / 9 / 8 / 7 патронов </li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+        <p class="fig"><a href="#top"> НАВЕРХ </a></p>
+        </div>
+
+        <div id="content">
+            <!--Заголовок статьи-->
+            <h2 class="fig" id="rev">  Револьверы </h2>
+
+            <!--Текст статьи-->
+            <hr width="600" color="#7d5f3b" size="5">
+            <img class="marcer" src="/assets/images/brazil.png" id="brazil" width="25" height="15">    <h3> Taurus Raging Bull. </h3> <img class="rightpic" src="/assets/images/TRBull.png" width="200" height="100">
+        <ul>
+            <li>Длина, мм	254–419 </li>
+            <li> Длина ствола, мм	101–254 </li>
+            <li>Вес без патронов, кг	0,80–2,20 </li>
+            <li>Емкость барабана	5, 6, 7, 8  </li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+            <img class="marcer" src="/assets/images/usa.png" id="usa" width="25" height="15">   <h3>Ruger GP-100 </h3> <img class="rightpic" src="/assets/images/ruger100.png" width="150" height="100">
+        <ul>
+            <li>Калибр: .357 Magnum. </li>
+            <li> Длина оружия: 216 / 245 / 292 мм </li>
+            <li> Длина ствола: 76 / 102 / 152 мм</li>
+            <li> Высота оружия: --- </li>
+            <li> Ширина оружия: --- </li>
+            <li> Емкость барабана: 6 патронов </li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+            <img class="marcer" src="/assets/images/italy.png" id="italy" width="25" height="15">   <h3> Mateba Model 6 Unica. </h3> <img class="rightpic" src="/assets/images/mateba6.png" width="200" height="100">
+        <ul>
+            <li>Калибр: .357 Magnum, .44 Magnum, .454 Casull </li>
+            <li> Общая длина: 255 / 273 / 287 / 362 мм </li>
+            <li>Длина ствола: 102 / 127 / 152 / 205 мм </li>
+            <li> Масса без патронов: от 1250 г. </li>
+            <li> Емкость барабана: 6 патронов </li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+            <img class="marcer" src="/assets/images/italy.png" id="italy" width="25" height="15">     <h3>Chiappa Rhino 60 DS.   </h3> <img class="rightpic" src="/assets/images/Chiappa60.png" width="200" height="100">
+        <ul>
+            <li>Калибр: .357 Magnum </li>
+            <li> Общая длина: 215 мм </li>
+            <li>Длина ствола: 102 мм </li>
+            <li>Масса без патронов: 850 г  </li>
+            <li> Емкость барабана: 6 патронов </li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+            <img class="marcer" src="/assets/images/usa.png" id="usa" width="25" height="15">    <h3> Smith&Wesson 500. </h3> <img class="rightpic" src="/assets/images/SmithWesson500.png" width="200" height="100">
+        <ul>
+            <li> Калибр: .500 Magnum</li>
+            <li>Длина оружия: 260 / 286 / 327 / 381 / 407 мм  </li>
+            <li> Длина ствола: 102 / 127 / 165 / 213 / 270 мм</li>
+            <li> Высота оружия: --- </li>
+            <li> Ширина оружия: --- </li>
+            <li> Масса без патронов: 1587 / 1771 / 1721 / 2055 г. </li>
+            <li> Емкость барабана: 5 патронов</li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+            <img class="marcer" src="/assets/images/usa.png" id="usa" width="25" height="15">     <h3>Colt Python </h3> <img class="rightpic" src="/assets/images/ColtPython.png" width="200" height="100">
+        <ul>
+            <li>Калибр: .357 Magnum </li>
+            <li> Общая длина: 191 / 235 / 286 / 327 мм </li>
+            <li>Длина ствола: 64 / 102 / 152 / 203 мм </li>
+            <li> Высота оружия: 150 мм </li>
+            <li>Ширина оружия: 39 мм  </li>
+            <li> Масса без патронов: 1006 / 1077 / 1233 / 1386 г. </li>
+            <li> Емкость барабана: 6 патронов</li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+
+            <p class="fig"><a href="#top"> НАВЕРХ </a></p>
+            </div>
+    <div id="content">
+        <!--Заголовок статьи-->
+        <h2 class="fig" id="ppistol">  Пистолеты-Пулеметы </h2>
+
+        <!--Текст статьи-->
+        <hr width="600" color="#7d5f3b" size="5">
+        <img class="marcer" src="/assets/images/israel.png" id="israel" width="25" height="15">  <h3> Micro Uzi</h3>  <img class="rightpic" src="/assets/images/uzi.png" width="250" height="150">
+        <ul>
+            <li>Калибр: 9×19 (9mm Parabellum) </li>
+            <li> Длина оружия: 460/250 мм </li>
+            <li>Длина ствола: 117 мм </li>
+            <li>Масса без патронов: 2 кг.  </li>
+            <li> Темп стрельбы: 1050-1250 выстр./мин </li>
+            <li> Емкость магазина: 20, 25 или 32 патрона </li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+        <img class="marcer" src="/assets/images/belg.png" id="belg" width="25" height="15">  <h3> FN-P90 </h3>  <img class="rightpic" src="/assets/images/FNp90.png" width="200" height="100">
+        <ul>
+            <li> Длина оружия: 500 мм</li>
+            <li>  Длина ствола: 257 мм </li>
+            <li> Масса без патронов: 2,8 кг.</li>
+            <li> Темп стрельбы: 900 выстр./мин </li>
+            <li>Емкость магазина: 50 патронов  </li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+        <img class="marcer" src="/assets/images/de.png" id="de" width="25" height="15"> <h3> Heckler & Koch MP7</h3>  <img class="rightpic" src="/assets/images/hkmp7.png" width="250" height="150">
+        <ul>
+            <li> Калибр: 4,6×30</li>
+            <li> Длина оружия: 638/415 мм </li>
+            <li>Длина ствола: 180 мм </li>
+            <li>  Ширина оружия: 51 мм</li>
+            <li> Высота оружия: 170 мм </li>
+            <li> Масса без патронов: 1,7 кг. </li>
+            <li> Темп стрельбы: 950 выстр./мин</li>
+            <li> Емкость магазина: 20, 30 или 40 патронов </li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+        <img class="marcer" src="/assets/images/de.png" id="de" width="25" height="15">  <h3> Heckler & Koch MP5</h3>  <img class="rightpic" src="/assets/images/hkmp5.png" width="250" height="150">
+        <ul>
+            <li>Калибр: 9×19 (9mm Parabellum) </li>
+            <li> Длина оружия: 680 мм </li>
+            <li> Длина ствола: 225 мм</li>
+            <li>Ширина оружия: 50 мм  </li>
+            <li>Высота оружия: 260 мм  </li>
+            <li>  Масса без патронов: 2,7 кг.</li>
+            <li>Темп стрельбы: 800 выстр./мин </li>
+            <li> Емкость магазина: 15 или 30 патронов </li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+        <img class="marcer" src="/assets/images/rawka1.png" id="rawka1" width="25" height="15">  <h3> ПП-19-01 "Витязь"</h3>  <img class="rightpic" src="/assets/images/pp192.png" width="300" height="150">
+        <ul>
+            <li>Калибр: 9×19 (9mm Parabellum) </li>
+            <li> Длина оружия: 705/480 мм </li>
+            <li> Длина ствола: 237 мм</li>
+            <li>Ширина со сложенным прикладом: 90 мм  </li>
+            <li> Ширина с откинутым прикладом: 65/67 мм </li>
+            <li>  Высота с магазином: 271/265 мм</li>
+            <li> Масса без патронов: 2,9 кг.</li>
+            <li> Боевая скорострельность при автоматической стрельбе до 120 в/м </li>
+            <li> Боевая скорострельность при одиночной стрельбе до 40 в/м </li>
+            <li>  Эффективная дальность до 200 м</li>
+            <li> Темп стрельбы: 700 выстр./мин </li>
+            <li> Емкость магазина: 30 патронов </li>
+        </ul>
+
+        <hr width="600" color="#7d5f3b" size="5">
+
+            <p class="fig"><a href="#top"> НАВЕРХ </a></p>
+        </div>
+        <div id="content">
+            <!--Заголовок статьи-->
+            <h2 class="fig" id="shootvint">  Штурмовые винтовки </h2>
+
+            <!--Текст статьи-->
+            <hr width="600" color="#7d5f3b" size="5">
+
+            <img class="marcer" src="/assets/images/usa.png" id="usa" width="25" height="15">  <h3> FN-P90 </h3>  <img class="rightpic" src="/assets/images/FNp90.png" width="200" height="100">
+            <ul>
+                <li> Длина оружия: 500 мм</li>
+                <li>  Длина ствола: 257 мм </li>
+                <li> Масса без патронов: 2,8 кг.</li>
+                <li> Темп стрельбы: 900 выстр./мин </li>
+                <li>Емкость магазина: 50 патронов  </li>
+            </ul>
+            <hr width="600" color="#7d5f3b" size="5">
+            <img class="marcer" src="/assets/images/de.png" id="de" width="25" height="15">  <h3> Heckler & Koch 433 </h3>  <img class="rightpic" src="/assets/images/hk433.png" width="250" height="100">
+            <ul>
+                <li>Калибр (базовый): 5,56×45 мм NATO </li>
+                <li>Длина оружия: 843/577, 881/613, 931/634, 989/705, 1032/764, 1060/792 мм </li>
+                <li> Длина ствола: 280, 318, 368, 421, 480, 503 мм</li>
+                <li>Масса без патронов: 3.25, 3.3, 3.4, 3.5, 3.6, 3.65 кг </li>
+                <li>Емкость магазина: 30 патронов </li>
+                <li> Темп стрельбы: 700 выстр/мин</li>
+            </ul>
+            <hr width="600" color="#7d5f3b" size="5">
+            <img class="marcer" src="/assets/images/de.png" id="de" width="25" height="15">  <h3> Heckler & Koch 416 </h3>  <img class="rightpic" src="/assets/images/hk416.png" width="250" height="100">
+            <ul>
+                <li> Калибр: 5,56×45 (.223 Remington)</li>
+                <li> Длина оружия: 900/804 мм</li>
+                <li>Длина ствола: 368 мм </li>
+                <li> Ширина оружия: 78 мм</li>
+                <li>Высота оружия: 240 мм (с магазином на 30 патронов) </li>
+                <li>Масса без патронов: 3,5 кг. </li>
+                <li> Темп стрельбы: 850 выстр./мин</li>
+                <li>  Емкость магазина: 30 патронов</li>
+            </ul>
+            <hr width="600" color="#7d5f3b" size="5">
+            <img class="marcer" src="/assets/images/usa.png" id="usa" width="25" height="15">  <h3> Bushmaster ACR </h3>  <img class="rightpic" src="/assets/images/bhacr.png" width="250" height="100">
+            <ul>
+                <li> Калибр: 5,56×45 (.223 Remington) / 6,8 SPC</li>
+                <li>Длина оружия: 947/716 мм (для варианта с 368 мм стволом) </li>
+                <li> Длина ствола: 318, 368, 406, 457 мм (сменные стволы)</li>
+                <li> Масса без патронов: 3,3 кг.</li>
+            </ul>
+            <hr width="600" color="#7d5f3b" size="5">
+            <img class="marcer" src="/assets/images/usa.png" id="usa" width="25" height="15"> <img class="marcer" src="/assets/images/belg.png" id="belg" width="25" height="15"> <h3>  FN SCAR </h3>  <img class="rightpic" src="/assets/images/fnscar.png" width="250" height="100">
+            <ul>
+                <li> Калибр: 5,56×45 (.223 Remington)</li>
+                <li> Длина оружия: 900/653 мм</li>
+                <li>Длина ствола: 368 мм </li>
+                <li> Масса без патронов: 3,5 кг.</li>
+                <li> Темп стрельбы: 500-650 выстр./мин</li>
+                <li>Емкость магазина: 30 патронов </li>
+            </ul>
+            <hr width="600" color="#7d5f3b" size="5">
+            <img class="marcer" src="/assets/images/de.png" id="de" width="25" height="15">  <h3> Heckler & Koch G36 </h3>  <img class="rightpic" src="/assets/images/hkg36.png" width="300" height="100">
+            <ul>
+                <li>Калибр: 5,56×45 (.223 Remington) </li>
+                <li>Длина оружия: 999/758 мм </li>
+                <li>Длина ствола: 480 мм </li>
+                <li>Масса без патронов: 3,55 кг. </li>
+                <li>Темп стрельбы: 750 выстр./мин </li>
+                <li>Емкость магазина: 30 патронов </li>
+            </ul>
+            <hr width="600" color="#7d5f3b" size="5">
+            <p class="fig"><a href="#top"> НАВЕРХ </a></p>
+    </div>
+
+    <div id="content">
+        <!--Заголовок статьи-->
+        <h2 class="fig" id="snipevin">  Снайперские винтовки </h2>
+
+        <!--Текст статьи-->
+        <hr width="600" color="#7d5f3b" size="5">
+
+        <img class="marcer" src="/assets/images/uk.png" id="uk" width="25" height="15">  <h3> Accuracy International L96A1 </h3> <img class="rightpic" src="/assets/images/accu.png" width="400" height="250">
+
+        <ul>
+            <li> Калибр: L96, Arctic Warfare, Police, Folding: 7.62x51mm NATO (.308 Win); Super Magnum: .338 Lapua (8.60x70mm), .300 Win Mag, 7mm Rem Mag </li>
+            <li> механизм: ручное перезаряжание, продольно-скользящий затвор </li>
+            <li> Длина: 1270 мм </li>
+            <li> Длина cтвола: 660 мм </li>
+            <li>Вес: 6.8kg без патронов и оптики  </li>
+            <li> Магазин: отъемный коробчатый, 5 патронов </li>
+            <li>Макс. эфф. дальность: до 800 метров для вариантов под 7.62мм НАТО, до 1100+ метров для вариантов Super Magnum  </li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+        <img class="marcer" src="/assets/images/uk.png" id="uk" width="25" height="15">  <h3> Accuracy International AW50 </h3> <img class="rightpic" src="/assets/images/accu2.png" width="300" height="100">
+
+        <ul>
+            <li>Калибр: 12,7×99 (.50 BMG)  </li>
+            <li> Длина оружия: 1350 мм </li>
+            <li> Длина ствола: 690 мм</li>
+            <li> Масса без патронов: 13,5 кг. </li>
+            <li> Емкость магазина: 5 патронов </li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+        <img class="marcer" src="/assets/images/usa.png" id="usa" width="25" height="15">  <h3> Barrett M82 </h3> <img class="rightpic" src="/assets/images/barra.png" width="400" height="250">
+
+        <ul>
+            <li> Калибр: 12,7×99 (.50 BMG) </li>
+            <li> Длина оружия: 1447 мм </li>
+            <li>Длина ствола: 737 мм </li>
+            <li>Масса без патронов: 12,9 кг.  </li>
+            <li> Емкость магазина: 10 патронов </li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+        <img class="marcer" src="/assets/images/rawka1.png" id="rawka" width="25" height="15">  <h3> «Орсис» Т-5000 </h3> <img class="rightpic" src="/assets/images/orsis.png" width="300" height="100">
+
+        <ul>
+            <li> Калибр 7,62x51 (.308 Winchester) / 7,62×63B (.300 Win Mag) / 8,58×70 (.338 Lapua Magnum) </li>
+            <li> Общая длина: 1270 мм (в разложенном состоянии) или 1020 мм (в сложенном состоянии) </li>
+            <li> Длина ствола: 660 / 660 / 699 мм</li>
+            <li> Масса оружия: 3,3 кг </li>
+            <li> Емкость магазина: 5 или 10 патронов </li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+        <img class="marcer" src="/assets/images/usa.png" id="usa" width="25" height="15">  <h3> CheyTac M200 Intervention </h3> <img class="rightpic" src="/assets/images/ctak.png" width="400" height="250">
+
+        <ul>
+            <li> Калибр: 10,4×77 (.408 CheyTac) </li>
+            <li> Длина оружия: 1346/1187 мм </li>
+            <li>Длина ствола: 737 мм </li>
+            <li> Масса без патронов: 14 кг. </li>
+            <li> Емкость магазина: 7 патронов </li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+        <img class="marcer" src="/assets/images/rawka1.png" id="rawka" width="25" height="15">  <h3> «Винторез»</h3> <img class="rightpic" src="/assets/images/vinto.png" width="400" height="200">
+
+        <ul>
+            <li>  Калибр: 9×39 </li>
+            <li>  Длина оружия: 894 мм</li>
+            <li>Длина ствола: 200 мм </li>
+            <li>  Ширина оружия: 40 мм </li>
+            <li> Высота оружия: 60 мм </li>
+            <li>Масса без патронов: 2,6 кг. (без прицела и патронов) </li>
+            <li> Темп стрельбы: 800-900 выстр./мин </li>
+            <li> Начальная скорость пули: 292 м/с </li>
+            <li> Емкость магазина: 10 или 20 патронов </li>
+            <li>   Прицельная дальность: 400 м </li>
+            <li>   Прицельная дальность с ночным прицелом: 300 м</li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+        <img class="marcer" src="/assets/images/de.png" id="de" width="25" height="15">  <h3> PSG1 </h3> <img class="rightpic" src="/assets/images/PSG1.png" width="400" height="200">
+
+        <ul>
+            <li> Калибр: 7,62×51 (.308 Winchester) </li>
+            <li> Длина оружия: 1208 мм </li>
+            <li>  Длина ствола: 650 мм</li>
+            <li>  Масса без патронов: 8,1 кг. </li>
+            <li> Емкость магазина: 5 или 10 патронов </li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+        <img class="marcer" src="/assets/images/rawka1.png" id="rawka1" width="25" height="15">  <h3> СВД </h3> <img class="rightpic" src="/assets/images/svd.png" width="400" height="250">
+
+        <ul>
+            <li> Калибр: 7,62×54R </li>
+            <li> Длина оружия: 1225 мм </li>
+            <li>Длина ствола: 547 мм </li>
+            <li>Ширина оружия: 88 мм  </li>
+            <li> Высота оружия: 230 мм </li>
+            <li>Масса без патронов: 4,3 кг. </li>
+            <li> Емкость магазина: 10 патронов </li>
+        </ul>
+        <hr width="600" color="#7d5f3b" size="5">
+        <p class="fig"><a href="#top"> НАВЕРХ </a></p>
+
+    </div>
+
+
+    <div id="content">
+        <hr width="600" color="#654722" size="5">
+    <ol>
+        <li>Данный сайт предназначен только для ознакомления с его материалами.</li>
+        <li>Автор не занимается продажей какого-либо оружия или боеприпасов.</li>
+        <li>Автор этого сайта ни при каких условиях не несет ответственности за использование любых материалов, сведений, либо мнений, имеющихся на этом сайте. Использование любой информации с данного сайта осуществляется исключительно на ваш страх и риск и под вашу личную ответственность за ваши действия.</li>
+        <li>Посещая данный сайт, посетитель автоматически соглашается с тем, что он единолично несет всю ответственность за возможную порчу оборудования или материалов, которую может повлечь за собой прямо или косвенно использование в любых целях информации, размещенной на данном сайте.</li>
+        <li>Любая информация, размещенная автором данного сайта получена автором исключительно из открытых и общедоступных источников.</li>
+        <li>Любые фотографии и изображения, размещенные на этом сайте получены автором исключительно из открытых и общедоступных источников и опубликованы исключительно в информационных целях. Все фотографии и изображения представлены исключительно как исторический и ознакомительный материал.</li>
+        <li>Автор не несет ответственности за поступки посетителей сайта после&nbsp;ознакомления с текстовым материалом или&nbsp;просмотра изображений с этого сайта.</li>
+        <li>Все имеющиеся на данном сайте статьи, обзоры, очерки и другие материалы предоставлены читателю исключительно для ознакомления и могут быть использованы исключительно в личных целях.</li>
+        <li>Администрация сайта не претендует на авторство всех использованных фото и текстовых материалов. Все права принадлежат их правообладателям.</li>
+        <li>Если Вы не согласны с приведенными здесь условиями и предупреждениями, пожалуйста, вернитесь обратно на ту страницу откуда вы попали на этот сайт.</li>
+    </ol>
+        <hr width="600" color="#654722" size="5">
+        <p class="fig"><a href="#top"> НАВЕРХ </a></p>
+        </div>
+
+
+
+    <!--Запрет наплывания-->
+    <div class="clear"></div>
+    <!--Подвал-->
+    <div id="footer">
+        <p class="fon"><strong>Телефон:<br> 6-6-6 </strong> </p>
+        <p class="mail"><strong>E-mail<br>@yahoo.com</strong></p>
+
+    </div>
+</div>
+</body>
+</html>
+
