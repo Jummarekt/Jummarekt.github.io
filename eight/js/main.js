@@ -2,9 +2,9 @@ import {GameView, clickToTail, canvas} from "./gameview.js"
 import {move} from "./game.js"
 
 const initialState = [
-    [4, 1, 3],
-    [7, 2, 5],
-    [8, 0, 6]]
+    [7, 1, 5],
+    [4, 2, 3],
+    [6, 0, 8]]
 
 let s1 = initialState
 new GameView(s1)
